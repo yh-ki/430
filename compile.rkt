@@ -103,9 +103,9 @@
      (let ((c1 (gensym 'case))
            (c2 (gensym 'case)))
      (seq (compile-e e)
-          (Mov 'rbx val-true)
           (contain? a)
-          (Cmp 'rbx val-true)
+          (Pop 'rcx)
+          (Cmp 'rcx val-true)
           (Jne c1)
           (compile-e b)
           (Jmp c2)
@@ -115,16 +115,21 @@
 
 (define (contain? a)
   (match a
-    ['() (seq (Mov 'rbx val-false))]
+    ['() (seq (Mov 'rcx val-false)
+              (Push 'rcx))]
     [(list x y ...)
      (let ((d1 (gensym 'cont))
            (d2 (gensym 'cont)))
-       (seq (Cmp 'rax x)
+       (seq (Cmp 'rax (value->bits x))
             (Jne d1)
+            (Mov 'rcx val-true)
+            (Push 'rcx)
             (Jmp d2)
             (Label d1)
             (contain? y)
             (Label d2)))]))
+
+
 
 
 
