@@ -120,11 +120,11 @@
      (let ((d1 (gensym 'cont))
            (d2 (gensym 'cont)))
        (seq (Cmp 'rax x)
-            (Jne c1)
-            (Jmp c2)
-            (Label c1)
+            (Jne d1)
+            (Jmp d2)
+            (Label d1)
             (contain? y)
-            (Label c2)))]))
+            (Label d2)))]))
 
 
 
