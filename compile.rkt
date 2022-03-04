@@ -122,7 +122,7 @@
             (Mov 'rbx val-true)
             (Jmp c2)
             (Label c1)
-            (contain? e y)
+            (contain? y)
             (Label c2)))]))
 
 
