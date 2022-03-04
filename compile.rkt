@@ -47,15 +47,15 @@
          ['abs
             (seq (Cmp 'rax 0)
                  (Jg 'abs_done)
-                 (Mov 'rbx (value->bits 0))
-                 (Sub 'rbx 'rax)
-                 (Push 'rbx)
+                 (Mov 'r8 (value->bits 0))
+                 (Sub 'r8 'rax)
+                 (Push 'r8)
                  (Pop 'rax)
                  (Label 'abs_done))]
          ['-
-          (seq (Mov 'rbx (value->bits 0))
-               (Sub 'rbx 'rax)
-               (Push 'rbx)
+          (seq (Mov 'r9 (value->bits 0))
+               (Sub 'r9 'rax)
+               (Push 'r9)
                (Pop 'rax))]
          ['not
           (seq (Cmp 'rax val-false)
