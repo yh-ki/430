@@ -84,11 +84,12 @@
     ['() (seq  (compile-e e))]
     [(list (Clause e1 e2) x ...)
      (seq (compile-e e1)
-          (Cmp 'rax val-true)
+          (Cmp 'rax val-false)
           (Je 'c1)
-          (compile-cond x e)
+          (compile-e e2)
+          (Ret)
           (Label 'c1)
-          (compile-e e2))]))
+          (compile-cond x e))]))
 
 
 
