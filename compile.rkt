@@ -81,8 +81,8 @@
   (match cs
     ['() (seq  (compile-e e))]
     [(list (Clause e1 e2) x ...)
-     (let ((c1 gensym 'cond))
-          ((c2 gensym 'cond))
+     (let ((c1 (gensym 'cond))
+           (c2 (gensym 'cond)))
      (seq (compile-e e1)
           (Cmp 'rax val-false)
           (Je c1)
