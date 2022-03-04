@@ -19,6 +19,7 @@
     ;; TODO: Handle cond
     [(list 'cond x ... (list else e)) (Cond (parse_cond x) (parse e))]
     ;; TODO: Handle case
+    [(list 'case a x ... (list else e)) (Case (parse a) (parse_case x) (parse e))]
     ;; TODO: Remove this clause once you've added clauses for
     ;; parsing cond and case; it's here just so running the test suite
     ;; doesn't trigger parse errors.
@@ -28,6 +29,11 @@
   (match l
     ['() '()]
     [(list (list e1 e2) x ...) (cons (Clause (parse e1) (parse e2)) (parse_cond x))]))
+
+(define (parse_case l)
+  (match l
+    ['() '()]
+    [(list (list (list a ...) e) x ...) (cons (Clause a (parse e)) (parse_case x))]))
     
 
 
