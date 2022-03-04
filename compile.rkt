@@ -85,9 +85,9 @@
     [(list (Clause e1 e2) x ...)
      (seq (compile-e e1)
           (Cmp 'rax val-true)
-          (Je 'l1)
+          (Je 'c1)
           (compile-cond x e)
-          (Label 'l1)
+          (Label 'c1)
           (compile-e e2))]))
 
 
