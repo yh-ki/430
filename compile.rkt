@@ -94,6 +94,36 @@
           (compile-cond x e)
           (Label c2)))]))
 
+;;Expr [Listof CaseClause] Expr -> Asm
+(define (compile-case e cs el)
+  (match cs
+    ['() (seq  (compile-e el))]
+    [(list (Clause a b) x ...)
+     (let ((c1 (gensym 'case))
+           (c2 (gensym 'case)))
+     (seq (compile-e e)
+          (contain? a)
+          (Cmp 'rbx val-true)
+          (Jne c1)
+          (compile-e b)
+          (Jmp c2)
+          (Label c1)
+          (complie-case e x el)
+          (Label c2)))]))
+
+(define (contain? a)
+  (match a
+    ['() (seq (Mov 'rbx val-false))]
+    [(list x y ...)
+     (let ((c1 (gensym 'cont))
+           (c2 (gensym 'cont)))
+       (seq (Cmp 'rax x)
+            (Jne c1)
+            (Mov 'rbx val-true)
+            (Jmp c2)
+            (Label c1)
+            (contain? e y)
+            (Label c2)))]))
 
 
 
