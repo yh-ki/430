@@ -108,7 +108,7 @@
           (compile-e b)
           (Jmp c2)
           (Label c1)
-          (complie-case e x el)
+          (compile-case e x el)
           (Label c2)))]))
 
 (define (contain? a)
