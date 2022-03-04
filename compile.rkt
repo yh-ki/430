@@ -78,6 +78,7 @@
          (compile-e e3)
          (Label l2))))
 
+;;[Listof CondClause] Expr -> Asm
 (define (compile-cond cs e)
   (match cs
     ['() (seq  (compile-e e))]
