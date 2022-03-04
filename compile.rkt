@@ -18,6 +18,7 @@
     ;; TODO: Handle cond
     [(Cond cs e)       (compile-cond cs e)]
     ;; TODO: Handle case
+    [(Case e cs el)    (compile-case e cs el)]
     ))
 
 
