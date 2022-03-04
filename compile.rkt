@@ -117,8 +117,8 @@
   (match a
     ['() (seq (Mov 'rbx val-false))]
     [(list x y ...)
-     (let ((c1 (gensym 'cont))
-           (c2 (gensym 'cont)))
+     (let ((d1 (gensym 'cont))
+           (d2 (gensym 'cont)))
        (seq (Cmp 'rax x)
             (Jne c1)
             (Jmp c2)
