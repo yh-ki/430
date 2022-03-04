@@ -17,6 +17,7 @@
      (If (parse e1) (parse e2) (parse e3))]
     ;; TODO: Handle cond
     [(list 'cond x ... e) (Cond (parse_cond x) e)]
+    [(e1 e2) (Clause (parse e1) (parse e2))]
     ;; TODO: Handle case
     ;; TODO: Remove this clause once you've added clauses for
     ;; parsing cond and case; it's here just so running the test suite
@@ -27,7 +28,7 @@
 (define (parse_cond l)
   (match l
     ['() '()]
-    [(list (e1 e2) x ...) (cons (Clause (parse e1) (parse e2)) (parse_cond x))]))
+    [(list e x ...) (cons (parse e) (parse_cond x))]))
     
 
 
