@@ -50,8 +50,7 @@
                  (Sub 'rbx 'rax)
                  (Push 'rbx)
                  (Pop 'rax)
-                 (Label 'abs_done)
-                 (Ret))]
+                 (Label 'abs_done))]
          ['-
           (seq (Mov 'rbx (value->bits 0))
                (Sub 'rbx 'rax)
