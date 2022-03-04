@@ -23,4 +23,9 @@
     ;; TODO: Handle case
     ))
 
+(define (interp-cond cs e)
+  (match cs
+    ['() (interp e)]
+    [(list (Clause e1 e2) x ...) (if (interp e1) (interp e2) (interp-cond x e))]))
+
 
