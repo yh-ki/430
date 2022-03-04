@@ -16,6 +16,7 @@
     [(Prim1 p e)       (compile-prim p e)]
     [(If e1 e2 e3)     (compile-if e1 e2 e3)]
     ;; TODO: Handle cond
+    [(Cond cs e)       (compile-cond cs e)]
     ;; TODO: Handle case
     ))
 
@@ -77,7 +78,17 @@
          (Label l1)
          (compile-e e3)
          (Label l2))))
-  
+
+(define (compile-cond cs e)
+  (match cs
+    ['() (seq  (compile-e e))]
+    [(list (Clause e1 e2) x ...)
+     (seq (compile-e e1)
+          (Cmp 'rax val-true)
+          (Je 'l1)
+          (compile-cond x e)
+          (Label 'l1)
+          (compile-e e2))]))
 
 
 

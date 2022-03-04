@@ -18,6 +18,8 @@
          (interp e2)
          (interp e3))]
     ;; TODO: Handle cond
+    [(Cond cs e)
+     (interp-cond cs e)]
     ;; TODO: Handle case
     ))
 

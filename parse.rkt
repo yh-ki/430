@@ -16,12 +16,20 @@
     [(list 'if e1 e2 e3)
      (If (parse e1) (parse e2) (parse e3))]
     ;; TODO: Handle cond
+    [(list 'cond x ... [else e]) (Cond (parse x) (parse e))]
+    [(list 'cond [else e]) (Cond '() (parse e))]
     ;; TODO: Handle case
     ;; TODO: Remove this clause once you've added clauses for
     ;; parsing cond and case; it's here just so running the test suite
     ;; doesn't trigger parse errors.
     [_ (Int 0)]
     [_ (error "parse error")]))
+
+(define (parse_cond l)
+  (match l
+    [(list [e1 e2]) (cons (Clause (parse e1) (parse e2)) '())]
+    [(list [e1 e2] x ...) (cons (Clause (parse e1) (parse e2)) (parse_cond x))]))
+    
 
 
 
