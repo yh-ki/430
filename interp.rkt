@@ -33,6 +33,6 @@
 (define (interp-case e cs el)
   (match cs
     ['() (interp el)]
-    [(list (Clause a b) x ...) (if (member e a) (interp b) (interp-case e x el))]))
+    [(list (Clause a b) x ...) (if (member (interp e) a) (interp b) (interp-case e x el))]))
 
 
