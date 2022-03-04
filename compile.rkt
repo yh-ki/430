@@ -62,8 +62,7 @@
                (Mov 'rax val-false)
                (Ret)
                (Label 'not_done)
-               (Mov 'rax val-true)
-               (Ret))])))
+               (Mov 'rax val-true))])))
 
 ;; Expr Expr Expr -> Asm
 (define (compile-if e1 e2 e3)
