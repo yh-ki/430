@@ -21,7 +21,6 @@
     ;; TODO: Remove this clause once you've added clauses for
     ;; parsing cond and case; it's here just so running the test suite
     ;; doesn't trigger parse errors.
-    [_ (Int 0)]
     [_ (error "parse error")]))
 
 (define (parse_cond l)
