@@ -26,7 +26,7 @@
 
 (define (parse_cond l)
   (match l
-    [(list (e1 e2) (else e)) (cons (Clause (parse e1) (parse e2)) '())]
+    ['() '()]
     [(list (e1 e2) x ...) (cons (Clause (parse e1) (parse e2)) (parse_cond x))]))
     
 
