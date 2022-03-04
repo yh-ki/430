@@ -81,13 +81,16 @@
   (match cs
     ['() (seq  (compile-e e))]
     [(list (Clause e1 e2) x ...)
-     (let ((c1 (seq (compile-cond x e))))
+     (let ((c1 gensym 'cond))
+          ((c2 gensym 'cond))
      (seq (compile-e e1)
           (Cmp 'rax val-false)
-          (Je 'c1)
+          (Je c1)
           (compile-e e2)
-          (Ret)
-          (Label c1)))]))
+          (Jmp c2)
+          (Label c1)
+          (compile-cond x e)
+          (Label c2)))]))
 
 
 
