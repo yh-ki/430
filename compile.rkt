@@ -58,11 +58,12 @@
                (Pop 'rax))]
          ['not
           (seq (Cmp 'rax val-false)
-               (Je 'not_done)
+               (Je 't)
                (Mov 'rax val-false)
-               (Ret)
-               (Label 'not_done)
-               (Mov 'rax val-true))])))
+               (Jmp 'not_done)
+               (Label 't)
+               (Mov 'rax val-true)
+               (Label 'not_done))])))
 
 ;; Expr Expr Expr -> Asm
 (define (compile-if e1 e2 e3)
