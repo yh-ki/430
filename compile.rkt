@@ -45,12 +45,12 @@
                  (Label l1)))]
          ['abs
             (seq (Cmp 'rax 0)
-                 (Jg 'done)
+                 (Jg 'abs_done)
                  (Mov 'rbx (value->bits 0))
                  (Sub 'rbx 'rax)
                  (Push 'rbx)
                  (Pop 'rax)
-                 (Label 'done)
+                 (Label 'abs_done)
                  (Ret))]
          ['-
           (seq (Mov 'rbx (value->bits 0))
@@ -59,10 +59,10 @@
                (Pop 'rax))]
          ['not
           (seq (Cmp 'rax val-false)
-               (Je 'l1)
+               (Je 'not_done)
                (Mov 'rax val-false)
                (Ret)
-               (Label 'l1)
+               (Label 'not_done)
                (Mov 'rax val-true)
                (Ret))])))
 
