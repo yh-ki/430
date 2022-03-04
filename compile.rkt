@@ -50,7 +50,7 @@
                  (Push 'rbx)
                  (Pop 'rax)
                  (Label 'done)
-                 (ret))]
+                 (Ret))]
          ['-
           (seq (Mov 'rbx (value->bits 0))
                (Sub 'rbx 'rax)
@@ -60,10 +60,10 @@
           (seq (Cmp 'rax val-false)
                (Je 'l1)
                (Move 'rax val-false)
-               (ret)
+               (Ret)
                (Label 'l1)
                (Move 'rax val-true)
-               (ret))])))
+               (Ret))])))
 
 ;; Expr Expr Expr -> Asm
 (define (compile-if e1 e2 e3)
