@@ -59,10 +59,10 @@
          ['not
           (seq (Cmp 'rax val-false)
                (Je 'l1)
-               (Move 'rax val-false)
+               (Mov 'rax val-false)
                (Ret)
                (Label 'l1)
-               (Move 'rax val-true)
+               (Mov 'rax val-true)
                (Ret))])))
 
 ;; Expr Expr Expr -> Asm
