@@ -45,26 +45,26 @@
                  (Mov 'rax val-false)
                  (Label l1)))]
          ['abs
+          (let (ab (gensym 'a)))
             (seq (Cmp 'rax 0)
-                 (Jg 'abs_done)
-                 (Mov 'r8 (value->bits 0))
-                 (Sub 'r8 'rax)
-                 (Push 'r8)
-                 (Pop 'rax)
-                 (Label 'abs_done))]
+                 (Jg ab)
+                 (Mov 'r8 'rax)
+                 (Mov 'rax 0)
+                 (Sub 'rax 'r8)
+                 (Label ab))]
          ['-
-          (seq (Mov 'r9 (value->bits 0))
-               (Sub 'r9 'rax)
-               (Push 'r9)
-               (Pop 'rax))]
+          (seq (Move 'r9 'rax)
+               (Move 'rax 0)
+               (Sub 'rax 'r9))]
          ['not
+          (let ((t (gensym 'no)))
           (seq (Cmp 'rax val-false)
-               (Je 't)
+               (Je t)
                (Mov 'rax val-false)
                (Jmp 'not_done)
-               (Label 't)
+               (Label t)
                (Mov 'rax val-true)
-               (Label 'not_done))])))
+               (Label 'not_done)))])))
 
 ;; Expr Expr Expr -> Asm
 (define (compile-if e1 e2 e3)
