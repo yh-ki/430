@@ -45,13 +45,13 @@
                  (Mov 'rax val-false)
                  (Label l1)))]
          ['abs
-          (let (ab (gensym 'a)))
+          (let ((ab (gensym 'a)))
             (seq (Cmp 'rax 0)
                  (Jg ab)
                  (Mov 'r8 'rax)
                  (Mov 'rax 0)
                  (Sub 'rax 'r8)
-                 (Label ab))]
+                 (Label ab)))]
          ['-
           (seq (Move 'r9 'rax)
                (Move 'rax 0)
