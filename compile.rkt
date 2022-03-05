@@ -53,8 +53,8 @@
                  (Sub 'rax 'r8)
                  (Label ab)))]
          ['-
-          (seq (Move 'r9 'rax)
-               (Move 'rax 0)
+          (seq (Mov 'r9 'rax)
+               (Mov 'rax 0)
                (Sub 'rax 'r9))]
          ['not
           (let ((t (gensym 'no)))
